@@ -1,0 +1,790 @@
+/* ============================================
+   MODERN FITNESS APP - COMPLETE STYLESHEET
+   ============================================ */
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #5568d3;
+  --secondary: #764ba2;
+  --accent: #f093fb;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --bg: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --border: #e5e7eb;
+  --border-light: #f3f4f6;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-md: rgba(0, 0, 0, 0.12);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  --shadow-xl: rgba(102, 126, 234, 0.25);
+  --radius: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #fce7f3 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ============================================
+   DAILY MOTIVATION BOX
+   ============================================ */
+
+.daily-quote,
+.quote-box,
+[class*="motivation"],
+div[class*="Daily"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 2rem !important;
+  border-radius: 1.5rem !important;
+  margin-bottom: 2rem !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4) !important;
+  border: none !important;
+}
+
+/* Decorative blur effect */
+.daily-quote::before,
+.quote-box::before,
+[class*="motivation"]::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.daily-quote *,
+.quote-box *,
+[class*="motivation"] * {
+  color: white !important;
+  position: relative;
+  z-index: 1;
+}
+
+.daily-quote h2,
+.quote-box h2 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.daily-quote p,
+.quote-box p {
+  font-size: 1.125rem !important;
+  line-height: 1.8 !important;
+  font-weight: 400 !important;
+  opacity: 0.95;
+}
+
+/* ============================================
+   MAIN CARD / FORM CONTAINER
+   ============================================ */
+
+.card,
+.main-form-card,
+body > div > main > div:not([class*="motivation"]):not([class*="quote"]) {
+  background: white !important;
+  border-radius: 1.5rem !important;
+  padding: 3rem 2.5rem !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid var(--border-light) !important;
+  margin-bottom: 2rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+/* Main Title */
+h1 {
+  font-size: 2.75rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin-bottom: 0.75rem !important;
+  text-align: center !important;
+  letter-spacing: -0.02em;
+}
+
+/* Subtitle */
+h1 + p,
+.form-subtitle,
+.card-subtitle {
+  color: var(--text-light) !important;
+  font-size: 1.125rem !important;
+  text-align: center !important;
+  margin-bottom: 3rem !important;
+  line-height: 1.6;
+}
+
+/* Section Headings */
+h2 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  margin-top: 2.5rem !important;
+  color: var(--text) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding-top: 2.5rem !important;
+  border-top: 2px solid var(--border-light) !important;
+  letter-spacing: -0.01em;
+}
+
+h2:first-of-type {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* Icons in headings */
+h2 svg,
+h2 img,
+label svg,
+label img {
+  color: var(--primary) !important;
+  flex-shrink: 0;
+}
+
+h2 svg,
+h2 img {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+/* Form Labels */
+label {
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  margin-bottom: 0.625rem !important;
+  color: var(--text) !important;
+  letter-spacing: 0.01em;
+}
+
+label svg,
+label img {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+/* Required asterisk */
+label span:last-child,
+label .required {
+  color: var(--danger) !important;
+  margin-left: 0.125rem;
+  font-weight: 700;
+}
+
+/* Input & Select Fields */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select,
+textarea {
+  width: 100% !important;
+  padding: 0.875rem 1.125rem !important;
+  border: 2px solid var(--border) !important;
+  border-radius: 0.875rem !important;
+  font-size: 1rem !important;
+  transition: var(--transition) !important;
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: inherit !important;
+  margin-bottom: 1.25rem !important;
+  font-weight: 400;
+}
+
+/* Focus States */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12) !important;
+  transform: translateY(-1px);
+}
+
+/* Hover States */
+input:hover:not(:focus),
+select:hover:not(:focus),
+textarea:hover:not(:focus) {
+  border-color: #d1d5db !important;
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af !important;
+  font-weight: 400;
+}
+
+/* Select Dropdown with Custom Arrow */
+select {
+  cursor: pointer !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1rem center !important;
+  background-size: 1.25rem !important;
+  padding-right: 3rem !important;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical !important;
+  min-height: 120px !important;
+  line-height: 1.6;
+}
+
+/* Remove number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ============================================
+   FORM LAYOUT
+   ============================================ */
+
+form {
+  width: 100%;
+}
+
+/* Form sections */
+form > div {
+  margin-bottom: 2rem;
+}
+
+/* Grid Layout for Inputs */
+form > div > div,
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  form > div > div,
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Full width for textarea and single items */
+  form > div > div > div:has(textarea),
+  form > div > div > div:only-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Individual form field wrapper */
+form > div > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+button,
+input[type="submit"],
+.btn {
+  padding: 1rem 1.75rem !important;
+  border-radius: 0.875rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  border: none !important;
+  transition: var(--transition) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.625rem !important;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Button (Submit) */
+button[type="submit"],
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.35) !important;
+  width: 100% !important;
+  padding: 1.25rem 2rem !important;
+  font-size: 1.125rem !important;
+  margin-top: 2rem !important;
+}
+
+button[type="submit"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #5568d3 0%, #6a3f8a 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.45) !important;
+}
+
+button[type="submit"]:hover::before {
+  opacity: 1;
+}
+
+button[type="submit"]:active {
+  transform: translateY(-1px) !important;
+}
+
+button[type="submit"] * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Disabled State */
+button:disabled,
+button[disabled] {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Small Icon Buttons */
+button[class*="refresh"],
+button:has(svg):not([type="submit"]) {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  padding: 0.625rem !important;
+  border-radius: 50% !important;
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+button[class*="refresh"]:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  transform: rotate(180deg) scale(1.05) !important;
+}
+
+/* ============================================
+   BMI DISPLAY
+   ============================================ */
+
+.bmi-display,
+[class*="bmi"],
+div[style*="rgba(102, 126, 234"] {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%) !important;
+  border: 2px solid rgba(102, 126, 234, 0.2) !important;
+  padding: 1.25rem 1.5rem !important;
+  border-radius: 1rem !important;
+  margin: 1.5rem 0 !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1) !important;
+}
+
+.bmi-display * {
+  color: var(--text) !important;
+}
+
+.bmi-display strong,
+.bmi-value,
+.bmi-display span[class*="text-primary"] {
+  color: var(--primary) !important;
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+}
+
+/* ============================================
+   SAVED PLANS
+   ============================================ */
+
+.saved-plans-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.625rem !important;
+  padding: 0.875rem 1.5rem !important;
+  background: white !important;
+  border: 2px solid var(--border) !important;
+  border-radius: 0.875rem !important;
+  cursor: pointer !important;
+  transition: var(--transition) !important;
+  margin-bottom: 1.5rem !important;
+  font-weight: 600 !important;
+  width: auto !important;
+  color: var(--text) !important;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.saved-plans-toggle:hover {
+  background: var(--primary) !important;
+  color: white !important;
+  border-color: var(--primary) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border-light);
+}
+
+/* ============================================
+   LOADING ANIMATIONS
+   ============================================ */
+
+.spinner {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  border: 2.5px solid rgba(255, 255, 255, 0.3) !important;
+  border-top-color: white !important;
+  border-radius: 50% !important;
+  animation: spin 0.6s linear infinite !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  border: 2px solid var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #6a3f8a 100%);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  main {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .card,
+  .main-form-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h1 + p {
+    font-size: 1rem !important;
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+  }
+
+  .daily-quote,
+  .quote-box {
+    padding: 1.5rem !important;
+  }
+
+  button[type="submit"] {
+    padding: 1.125rem 1.5rem !important;
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem !important;
+  }
+
+  .card,
+  .main-form-card {
+    padding: 1.5rem 1.25rem !important;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white !important;
+  }
+
+  .no-print,
+  button {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid var(--primary) !important;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: #000000;
+    --text: #000000;
+  }
+  
+  input,
+  select,
+  textarea {
+    border-width: 3px !important;
+  }
+}
+
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+}
+
+.dark {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+/* ============================================
+   DARK MODE IMPROVEMENTS
+   ============================================ */
+
+.dark {
+  --bg: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text: #f1f5f9;
+  --text-light: #141415; /* ✅ Increased brightness for better readability */
+  --border: #334155;
+  --border-light: #475569;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-md: rgba(0, 0, 0, 0.65);
+  --shadow-lg: rgba(0, 0, 0, 0.8);
+  --primary: #8b5cf6;
+  --primary-dark: #7c3aed;
+  --secondary: #9333ea;
+  --accent: #f472b6;
+  
+}
+
+
+/* Adjust card, forms, and content for dark mode */
+.dark body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #111827 100%) !important;
+  color: var(--text);
+}
+
+.dark .card,
+.dark .main-form-card {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background: var(--bg-tertiary) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.dark label {
+  color: var(--text-light) !important;
+}
+
+.dark h1,
+.dark h2 {
+  background: linear-gradient(135deg, #8b5cf6 0%, #f472b6 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.dark .daily-quote,
+.dark .quote-box {
+  background: linear-gradient(135deg, #4f46e5 0%, #7e22ce 100%) !important;
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Button improvements in dark mode */
+.dark button[type="submit"],
+.dark .btn-primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%) !important;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4) !important;
+}
+
+.dark .saved-plans-toggle {
+  background: var(--bg-tertiary) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.dark .bmi-display {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.12) 0%,
+    rgba(244, 114, 182, 0.12) 100%
+  ) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Footer and general text contrast */
+.dark footer {
+  color: var(--text-light) !important;
+  border-top-color: var(--border);
+}
+
+/* Scrollbar dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b !important;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%) !important;
+  border-color: #1e293b !important;
+}
