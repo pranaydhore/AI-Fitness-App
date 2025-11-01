@@ -1,7 +1,8 @@
+// utils/openai.ts
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY!, // Ensure your .env file has this key
 });
 
 export interface UserData {
@@ -33,65 +34,25 @@ Dietary Preference: ${userData.dietaryPreference}
 ${userData.medicalHistory ? `Medical History: ${userData.medicalHistory}` : ""}
 ${userData.stressLevel ? `Stress Level: ${userData.stressLevel}` : ""}
 
-Please provide a detailed response in the following JSON format:
-
+Provide a structured JSON with:
 {
-  "motivationalMessage": "A personalized motivational message for the user",
+  "motivationalMessage": "",
   "workoutPlan": {
-    "overview": "Brief overview of the workout plan",
-    "weeklySchedule": [
-      {
-        "day": "Monday",
-        "focus": "Chest and Triceps",
-        "exercises": [
-          {
-            "name": "Barbell Bench Press",
-            "sets": 4,
-            "reps": "8-12",
-            "rest": "90 seconds",
-            "notes": "Focus on controlled movement"
-          }
-        ]
-      }
-    ],
-    "tips": ["Tip 1", "Tip 2"]
+    "overview": "",
+    "weeklySchedule": [],
+    "tips": []
   },
   "dietPlan": {
-    "overview": "Brief overview of the diet plan",
-    "dailyCalories": 2200,
-    "macros": {
-      "protein": "30%",
-      "carbs": "40%",
-      "fats": "30%"
-    },
-    "meals": [
-      {
-        "type": "Breakfast",
-        "time": "7:00 AM",
-        "items": [
-          {
-            "name": "Oatmeal with Berries",
-            "calories": 350,
-            "protein": "12g",
-            "description": "Steel-cut oats with mixed berries and honey"
-          }
-        ]
-      }
-    ],
-    "hydration": "Drink at least 3-4 liters of water daily",
-    "supplements": ["Whey Protein", "Multivitamin"]
+    "overview": "",
+    "dailyCalories": 0,
+    "macros": {},
+    "meals": [],
+    "hydration": "",
+    "supplements": []
   },
-  "lifestyleTips": [
-    "Get 7-8 hours of sleep",
-    "Manage stress through meditation"
-  ],
-  "progressTracking": {
-    "weeklyGoals": ["Goal 1", "Goal 2"],
-    "measurements": ["Weight", "Body Fat %", "Muscle Mass"]
-  }
-}
-
-Make sure the plan is realistic, achievable, and tailored to their specific needs and goals.`;
+  "lifestyleTips": [],
+  "progressTracking": {}
+}`;
 
   try {
     const completion = await openai.chat.completions.create({
@@ -100,20 +61,17 @@ Make sure the plan is realistic, achievable, and tailored to their specific need
         {
           role: "system",
           content:
-            "You are an expert fitness coach and nutritionist who creates personalized, evidence-based workout and diet plans. Always respond with valid JSON.",
+            "You are an expert AI fitness coach and nutritionist. Always return valid JSON format as response.",
         },
-        {
-          role: "user",
-          content: prompt,
-        },
+        { role: "user", content: prompt },
       ],
       temperature: 0.7,
       response_format: { type: "json_object" },
     });
 
-    const response = completion.choices[0].message.content;
-    return JSON.parse(response || "{}");
-  } catch (error) {
+    const responseText = completion.choices[0].message?.content || "{}";
+    return JSON.parse(responseText);
+  } catch (error: any) {
     console.error("Error generating fitness plan:", error);
     throw new Error("Failed to generate fitness plan");
   }
@@ -122,60 +80,51 @@ Make sure the plan is realistic, achievable, and tailored to their specific need
 export async function generateMotivationalQuote() {
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4-turbo-preview",
       messages: [
         {
           role: "system",
           content:
-            "You are a motivational fitness coach. Generate an inspiring, short motivational quote about fitness, health, or personal growth.",
+            "You are a motivational fitness coach. Generate a short inspiring quote about health and personal growth.",
         },
-        {
-          role: "user",
-          content: "Give me a motivational quote for today.",
-        },
+        { role: "user", content: "Give me a motivational quote for today." },
       ],
       temperature: 0.8,
-      max_tokens: 100,
+      max_tokens: 50,
     });
 
-    return completion.choices[0].message.content?.trim() || "";
+    return completion.choices[0].message?.content?.trim() || "Stay strong and consistent!";
   } catch (error) {
-    console.error("Error generating quote:", error);
-    return "Every workout brings you one step closer to your goal!";
+    console.error("Error generating motivational quote:", error);
+    return "Consistency is the key to transformation!";
   }
 }
 
 export async function generateExerciseImage(exerciseName: string) {
   try {
     const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: `A realistic, professional photograph of a person performing ${exerciseName} exercise in a gym setting. High quality, proper form demonstration, motivational lighting.`,
-      n: 1,
+      model: "gpt-image-1",
+      prompt: `High-quality, realistic image of a person performing ${exerciseName} in a gym setting. Proper form, professional lighting.`,
       size: "1024x1024",
-      quality: "standard",
     });
-
     return response.data[0].url;
   } catch (error) {
-    console.error("Error generating image:", error);
-    throw new Error("Failed to generate exercise image");
+    console.error("Error generating exercise image:", error);
+    return null;
   }
 }
 
 export async function generateMealImage(mealName: string) {
   try {
     const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: `A professional, appetizing photograph of ${mealName}. High quality food photography, well-plated, vibrant colors, natural lighting.`,
-      n: 1,
+      model: "gpt-image-1",
+      prompt: `Professional, appetizing photograph of ${mealName}. Bright lighting, clean background, vibrant presentation.`,
       size: "1024x1024",
-      quality: "standard",
     });
-
     return response.data[0].url;
   } catch (error) {
-    console.error("Error generating image:", error);
-    throw new Error("Failed to generate meal image");
+    console.error("Error generating meal image:", error);
+    return null;
   }
 }
 
