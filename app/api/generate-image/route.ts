@@ -15,9 +15,9 @@ export async function POST(request: NextRequest) {
     let imageUrl: string | undefined;
 
     if (type === "exercise") {
-      imageUrl = await generateExerciseImage(name);
+      imageUrl = (await generateExerciseImage(name)) ?? undefined;  // ✅ Fix applied here
     } else if (type === "meal") {
-      imageUrl = await generateMealImage(name);
+      imageUrl = (await generateMealImage(name)) ?? undefined;      // ✅ Fix applied here
     } else {
       return NextResponse.json(
         { error: "Invalid type. Must be 'exercise' or 'meal'" },
