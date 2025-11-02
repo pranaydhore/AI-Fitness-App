@@ -93,7 +93,10 @@ export async function generateMotivationalQuote() {
       max_tokens: 50,
     });
 
-    return completion.choices[0].message?.content?.trim() || "Stay strong and consistent!";
+    return (
+      completion.choices[0].message?.content?.trim() ||
+      "Stay strong and consistent!"
+    );
   } catch (error) {
     console.error("Error generating motivational quote:", error);
     return "Consistency is the key to transformation!";
@@ -107,7 +110,15 @@ export async function generateExerciseImage(exerciseName: string) {
       prompt: `High-quality, realistic image of a person performing ${exerciseName} in a gym setting. Proper form, professional lighting.`,
       size: "1024x1024",
     });
-    return response.data[0].url;
+
+    // ✅ Safe access with optional chaining
+    const imageUrl = response?.data?.[0]?.url || null;
+
+    if (!imageUrl) {
+      console.error("No exercise image URL returned from OpenAI");
+    }
+
+    return imageUrl;
   } catch (error) {
     console.error("Error generating exercise image:", error);
     return null;
@@ -121,7 +132,15 @@ export async function generateMealImage(mealName: string) {
       prompt: `Professional, appetizing photograph of ${mealName}. Bright lighting, clean background, vibrant presentation.`,
       size: "1024x1024",
     });
-    return response.data[0].url;
+
+    // ✅ Safe access with optional chaining
+    const imageUrl = response?.data?.[0]?.url || null;
+
+    if (!imageUrl) {
+      console.error("No meal image URL returned from OpenAI");
+    }
+
+    return imageUrl;
   } catch (error) {
     console.error("Error generating meal image:", error);
     return null;
